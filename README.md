@@ -1,2 +1,3 @@
 # SUMMON_RANGE_CALCULATOR
- Summon range calculator for DS2 SOTFS.
+
+Summon range calculator for DS2 SOTFS, made in c++.
