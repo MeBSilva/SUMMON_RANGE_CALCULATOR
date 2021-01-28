@@ -1,8 +1,15 @@
 #include <iostream>
 #include <iomanip>
 #include <map>
+#include <locale>
 
 using namespace std;
+
+struct thousand_format : std::numpunct<char>
+{
+    char do_thousand_sep() const { return ','; }
+    std::string do_grouping() const { return "\3"; }
+};
 
 int getTier(double sm, int *tierArray, double *lower, double *upper)
 {
@@ -72,7 +79,8 @@ bool nameEngravedCheck(int item)
 void printSMRange(int lowerRange, int upperRange)
 {
     cout << "+++++++++++++++++++++++++++++++++++++" << endl;
-    cout << "SM ranges: " << setprecision(30) << lowerRange << "-" << upperRange << endl;
+    std::cout.imbue(std::locale(std::cout.getloc(), new thousand_format));
+    std::cout << "SM ranges: " << setprecision(30) << lowerRange << "-" << upperRange << endl;
     cout << "+++++++++++++++++++++++++++++++++++++" << endl;
 }
 
